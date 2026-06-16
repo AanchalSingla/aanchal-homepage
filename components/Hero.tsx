@@ -1,54 +1,51 @@
 "use client";
 
 import React from "react";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import FloatingLeaf from "./FloatingLeaf";
 
-const easeOut = [0, 0, 0.2, 1] as const;
-
-const container: Variants = {
-  hidden: {},
+const containerVariants = {
+  hidden: { opacity: 0 },
   show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
   },
 };
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
 };
 
 const Hero: React.FC = () => {
   return (
     <section id="top" className="py-16">
       <motion.div
-        variants={container}
+        variants={containerVariants}
         initial="hidden"
         animate="show"
         className="max-w-6xl mx-auto px-6"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-            <motion.p variants={item} className="text-sm mb-2" style={{ fontFamily: "var(--font-accent)", color: "#B5C9B7" }}>
+            <motion.p variants={itemVariants} className="text-sm mb-2" style={{ fontFamily: "var(--font-accent)", color: "#B5C9B7" }}>
               ✦ Hello, I'm
             </motion.p>
 
-            <motion.h1 variants={item} style={{ fontFamily: "var(--font-display)" }} className="text-4xl md:text-6xl font-serif mb-4 text-charcoal">
+            <motion.h1 variants={itemVariants} style={{ fontFamily: "var(--font-display)" }} className="text-4xl md:text-6xl font-serif mb-4 text-charcoal">
               Aanchal Singla
             </motion.h1>
 
-            <motion.h2 variants={item} className="text-base md:text-lg mb-4 text-gray-700" style={{ fontFamily: "var(--font-body)" }}>
+            <motion.h2 variants={itemVariants} className="text-base md:text-lg mb-4 text-gray-700" style={{ fontFamily: "var(--font-body)" }}>
               MBA Candidate @ XIMB · Neuroscientist · Dog Mom · Anime Enthusiast
             </motion.h2>
 
-            <motion.p variants={item} className="mb-6 text-gray-700 max-w-xl" style={{ fontFamily: "var(--font-body)" }}>
+            <motion.p variants={itemVariants} className="mb-6 text-gray-700 max-w-xl" style={{ fontFamily: "var(--font-body)" }}>
               I'm a UCLA Neuroscience grad now navigating the world of business at XIMB. I believe in leading with curiosity — whether that's in a boardroom, a research lab, or a knitting circle.
             </motion.p>
 
-            <motion.div variants={item}>
+            <motion.div variants={itemVariants}>
               <button className="inline-block px-4 py-2 rounded-full" style={{ background: "#B5C9B7", color: "#fff", fontFamily: "var(--font-body)" }} onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>
                 View My Work ↓
               </button>
@@ -56,7 +53,7 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="relative flex items-center justify-center">
-            <motion.div variants={item} className="relative">
+            <motion.div variants={itemVariants} className="relative">
               <div className="relative" style={{ width: 360, height: 360 }}>
                 <Image
                   src="/images/professional_photo.jpeg"
