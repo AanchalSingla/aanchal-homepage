@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import FloatingLeaf from "./FloatingLeaf";
 
-const container = {
+const easeOut = [0, 0, 0.2, 1] as const;
+
+const container: Variants = {
   hidden: {},
   show: {
     transition: {
@@ -14,9 +16,9 @@ const container = {
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
 const Hero: React.FC = () => {
